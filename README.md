@@ -46,5 +46,4 @@ An intelligent, fully responsive AI-powered resume analyzer that gives ATS score
 
 ---
 
-## 📁 Folder Structure
 
