@@ -5,7 +5,7 @@ import type { ResumeTemplateData } from "@/types/User";
 
 export async function analyzeResumeApi(file: File): Promise<AnalysisResponse> {
   const form = new FormData();
-  form.append("resume", file); // adjust if backend expects different field name
+  form.append("resume", file); 
 
   const response = await axios.post<AnalysisResponse>(
     `${baseURL}/resume/analyze`,

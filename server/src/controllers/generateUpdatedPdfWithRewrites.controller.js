@@ -11,27 +11,6 @@ import Handlebars from "handlebars";
 import { fileURLToPath } from "url";
 
 
-
-
-
-
-
-
-
-
-// 🧠 Helper to get updated content with rewrites applied
-
-
-
-
-
-
-
-
-
-
-
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 

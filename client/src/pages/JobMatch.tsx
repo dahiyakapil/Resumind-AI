@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { PdfUpload } from "@/components/job-match/pdfUpload";
+import { PdfUpload } from "@/components/job-match/PdfUpload";
 import { AnalysisResult } from "@/components/job-match/AnalysisResult";
 import {
   submitJobMatch,

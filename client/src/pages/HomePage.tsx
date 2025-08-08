@@ -1,32 +1,3 @@
-// import React from "react";
-// import { Hero, Navbar, FeaturesSection, HowItWorks, Testimonials, Footer } from "@/components/landing";
-
-// const HomePage: React.FC<{ onAuthNavigate: () => void }> = ({ onAuthNavigate }) => {
-//   const scrollTo = (id: string) => {
-//     if (id === "top") window.scrollTo({ top: 0, behavior: "smooth" });
-//     else document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gradient-to-r from-slate-50 to-purple-50 flex flex-col">
-//       <Navbar onAuthNavigate={onAuthNavigate} onScrollTo={scrollTo} />
-//       <main className="flex-1">
-//         <Hero onAuthNavigate={onAuthNavigate} />
-//         <FeaturesSection />
-//         <HowItWorks />
-//         <Testimonials />
-//       </main>
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default HomePage;
-
-
-
-
-
 import React from 'react';
 import { Navbar } from '../components/landing/Navbar';
 import { Hero } from '../components/landing/Hero';
