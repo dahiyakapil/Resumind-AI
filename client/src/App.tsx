@@ -6,7 +6,6 @@ import HistoryPage from "./pages/HistoryPage";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Toaster } from "sonner";
 import { HomePage } from "./pages/HomePage";
-import { useSession } from "@/hooks/useSession";
 import { ThemeProvider } from "./components/contexts/ThemeContext";
 import { OAuthRedirect } from "./pages/OAuthRedirect";
 import DashboardLayout from "./pages/DashboardLayout";
@@ -19,16 +18,6 @@ import JobMatch from "./pages/JobMatch";
 
 function App() {
   const navigate = useNavigate();
-  const { loading } = useSession();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
-        <p className="text-lg">Loading session...</p>
-      </div>
-    );
-  }
-
   return (
     <ThemeProvider>
       <Toaster richColors position="bottom-right" />
