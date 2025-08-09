@@ -1,5 +1,5 @@
 // src/services/jobMatchService.ts
-import { baseURL } from "@/baseURL";
+
 import axios from "@/lib/axios";
 
 export interface JobMatchResponse {
@@ -23,10 +23,13 @@ export interface JobMatchResponse {
   };
 }
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
 export const matchResumeWithJob = async (
   formData: FormData
 ): Promise<JobMatchResponse> => {
-  const response = await axios.post(`${baseURL}/job/match`, formData, {
+  const response = await axios.post(`${API_BASE_URL}/job/match`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

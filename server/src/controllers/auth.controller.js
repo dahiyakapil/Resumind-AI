@@ -3,33 +3,62 @@ import { validateSignupData } from "../utils/validation.js";
 import bcrypt from "bcrypt"
 import validator from "validator"
 
+// export const signUp = async (req, res) => {
+//     try {
+//         validateSignupData(req);
+
+//         const { firstName, lastName, email, password } = req.body;
+//         const passwordHash = await bcrypt.hash(password, 10);
+
+//         const user = new User({ firstName, lastName, email, password: passwordHash });
+
+//         const saveUser = await user.save();
+
+//         const token = await saveUser.getJWT();
+
+//         res.cookie("token", token, {
+//             httpOnly: true,
+//             secure: false, // set true in production
+//             sameSite: "lax",
+//             expires: new Date(Date.now() + 8 * 3600000),
+//         });
+
+
+//         return res.status(201).json({ message: "User created successfully", data: saveUser });
+
+//     } catch (error) {
+//         return res.status(400).json({ error: "Error in creating the user: " + error.message });
+//     }
+// };
+
+
 export const signUp = async (req, res) => {
-    try {
-        validateSignupData(req);
+  try {
+    validateSignupData(req);
 
-        const { firstName, lastName, email, password } = req.body;
-        const passwordHash = await bcrypt.hash(password, 10);
+    const { firstName, lastName, email, password } = req.body;
 
-        const user = new User({ firstName, lastName, email, password: passwordHash });
+    const user = new User({ firstName, lastName, email, password });
 
-        const saveUser = await user.save();
+    const saveUser = await user.save();
+    const token = await saveUser.getJWT();
 
-        const token = await saveUser.getJWT();
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      expires: new Date(Date.now() + 8 * 3600000),
+    });
 
-        res.cookie("token", token, {
-            httpOnly: true,
-            secure: false, // set true in production
-            sameSite: "lax",
-            expires: new Date(Date.now() + 8 * 3600000),
-        });
-
-
-        return res.status(201).json({ message: "User created successfully", data: saveUser });
-
-    } catch (error) {
-        return res.status(400).json({ error: "Error in creating the user: " + error.message });
-    }
+    return res.status(201).json({
+      message: "User created successfully",
+      data: saveUser,
+    });
+  } catch (error) {
+    return res.status(400).json({ error: "Error in creating the user: " + error.message });
+  }
 };
+
 
 export const login = async (req, res) => {
     try {

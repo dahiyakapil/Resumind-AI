@@ -1,14 +1,17 @@
 import axios from "axios";
 import type { AnalysisResponse } from "@/types/resumeAnalysis";
-import { baseURL } from "@/baseURL";
+
 import type { ResumeTemplateData } from "@/types/User";
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 export async function analyzeResumeApi(file: File): Promise<AnalysisResponse> {
   const form = new FormData();
   form.append("resume", file); 
 
   const response = await axios.post<AnalysisResponse>(
-    `${baseURL}/resume/analyze`,
+    `${API_BASE_URL}/resume/analyze`,
     form,
     {
       headers: {
@@ -22,14 +25,14 @@ export async function analyzeResumeApi(file: File): Promise<AnalysisResponse> {
 }
 
 export async function fetchResumeHistoryApi() {
-  const response = await axios.get(`${baseURL}/resume/history`, {
+  const response = await axios.get(`${API_BASE_URL}/resume/history`, {
     withCredentials: true,
   });
   return response.data.reports;
 }
 
 export async function deleteResumeReportApi(reportId: string) {
-  const response = await axios.delete(`${baseURL}/resume/${reportId}`, {
+  const response = await axios.delete(`${API_BASE_URL}/resume/${reportId}`, {
     withCredentials: true,
   });
   return response.data;
@@ -39,7 +42,7 @@ export const reanalyzeResumeApi = async (
   reportId: string
 ): Promise<AnalysisResponse> => {
   const res = await axios.put(
-    `${baseURL}/resume/reanalyze/${reportId}`,
+    `${API_BASE_URL}/resume/reanalyze/${reportId}`,
     null,
     {
       withCredentials: true,
@@ -51,7 +54,7 @@ export const reanalyzeResumeApi = async (
 
 // ✅ Download AI Report PDF
 export async function downloadReportPdfApi(reportId: string): Promise<void> {
-  const response = await axios.get(`${baseURL}/resume/download/${reportId}`, {
+  const response = await axios.get(`${API_BASE_URL}/resume/download/${reportId}`, {
     responseType: "blob", // important for binary files like PDF
     withCredentials: true,
   });
@@ -70,7 +73,7 @@ export async function downloadReportPdfApi(reportId: string): Promise<void> {
 
 // src/services/resumeService.ts
 export async function fetchResumeReportByIdApi(reportId: string) {
-  const response = await axios.get(`${baseURL}/resume/${reportId}`, {
+  const response = await axios.get(`${API_BASE_URL}/resume/${reportId}`, {
     withCredentials: true,
   });
   return response.data;
@@ -88,7 +91,7 @@ export async function downloadUpdatedResumePdfApi(
   userData: ResumeTemplateData
 ) {
   const response = await axios.post(
-    `${baseURL}/resume/download-updated/${reportId}`,
+    `${API_BASE_URL}/resume/download-updated/${reportId}`,
     { appliedRewrites, theme, userData },
     {
       responseType: "blob",

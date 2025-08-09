@@ -3,10 +3,10 @@ import React, { useCallback, useState } from "react";
 import { motion } from "framer-motion";
 import { useAppDispatch } from "@/hooks/redux";
 import { setCredentials } from "@/app//features/authSlice";
-import { signin, signup, oauthLogin } from "@/app/services/authApi";
+import { signin, signup} from "@/app/services/authApi";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FaGoogle, FaGithub } from "react-icons/fa";
+// import { FaGoogle, FaGithub } from "react-icons/fa";
 import { FiMail, FiLock, FiEye } from "react-icons/fi";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -59,10 +59,10 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isSignIn }) => {
     [isSignIn, dispatch, navigate, submitting]
   );
 
-  const handleOAuth = async (provider: "google" | "github") => {
-    // Redirect-based; backend should callback with token to frontend route
-    oauthLogin(provider);
-  };
+  // const handleOAuth = async (provider: "google" | "github") => {
+  //   // Redirect-based; backend should callback with token to frontend route
+  //   oauthLogin(provider);
+  // };
 
   return (
     <motion.form
@@ -128,7 +128,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isSignIn }) => {
         </p>
       ))}
 
-      {isSignIn && (
+      {/* {isSignIn && (
         <div className="text-right">
           <button
             type="button"
@@ -137,7 +137,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isSignIn }) => {
             Forgot password?
           </button>
         </div>
-      )}
+      )} */}
 
       <button
         type="submit"
@@ -146,7 +146,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isSignIn }) => {
       >
         {isSignIn ? "Sign In" : "Create Account"}
       </button>
-
+{/* 
       <div className="border-t border-white/20 mt-4 pt-4 text-center text-sm text-gray-400">
         OR CONTINUE WITH
       </div>
@@ -166,7 +166,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ isSignIn }) => {
         >
           <FaGithub /> GitHub
         </button>
-      </div>
+      </div> */}
     </motion.form>
   );
 };

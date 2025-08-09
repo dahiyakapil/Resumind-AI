@@ -1,12 +1,13 @@
-
-
 import { ToggleTabs } from '../components/ToggleTabs';
 import { AuthForm } from '../components/AuthForm';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
 
 const AuthPage = () => {
   const [isSignIn, setIsSignIn] = useState(true);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1a1443] to-[#071b3b] px-4 relative overflow-hidden">
@@ -14,6 +15,15 @@ const AuthPage = () => {
       <div className="absolute inset-0 z-0">
         <div className="w-full h-full bg-[radial-gradient(circle,_rgba(255,255,255,0.1)_1px,_transparent_1px)] bg-[length:30px_30px]" />
       </div>
+
+      {/* Back Button */}
+      <button
+        type="button"
+        onClick={() => navigate('/')}
+        className="absolute top-8 left-4 z-20 text-white hover:text-purple-300 text-sm flex items-center gap-1"
+      >
+        <ArrowLeft className="w-4 h-4" /> Back
+      </button>
 
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}

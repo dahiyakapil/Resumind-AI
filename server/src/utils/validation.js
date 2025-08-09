@@ -13,9 +13,6 @@ export const validateSignupData = (req) => {
         throw new Error("EMail is not valid");
     }
 }
-
-
-
 export const validateProfileEditData = (req) => {
     try {
         // Allowed fields for editing (No password here!)
