@@ -62,12 +62,13 @@ const DashboardLayout = () => {
         {/* Sidebar Top Section */}
         <div className="p-5 flex flex-col gap-6">
           {/* Logo */}
-         
-         <Link to = "/">
+
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              ResumeIQ
-            </h2>
+            <Link to="/">
+              <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                ResumeIQ
+              </h2>
+            </Link>
             <Button
               variant="ghost"
               size="icon"
@@ -78,7 +79,6 @@ const DashboardLayout = () => {
             </Button>
           </div>
 
-         </Link>
           {/* Navigation */}
           <nav className="space-y-3">
             <NavLink
