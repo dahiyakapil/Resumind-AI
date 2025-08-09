@@ -7,6 +7,8 @@ import { store } from "./app/store";
 import "./index.css";
 import { ThemeProvider } from "./providers/theme-provider";
 
+
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Provider store={store}>
