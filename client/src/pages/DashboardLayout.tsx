@@ -1,9 +1,218 @@
+// import {
+//   FileText,
+//   History,
+//   LogOut,
+//   Moon,
+//   Rocket,
+//   Settings,
+//   Sun,
+//   Sparkles,
+//   Link2Icon,
+//   Menu,
+//   X,
+// } from "lucide-react";
+// import { Button } from "@/components/ui/button";
+// import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+// import { NavLink, Outlet, useNavigate } from "react-router-dom";
+// import { useTheme } from "@/hooks/useTheme";
+// import {
+//   DropdownMenu,
+//   DropdownMenuContent,
+//   DropdownMenuItem,
+//   DropdownMenuTrigger,
+// } from "@/components/ui/dropdown-menu";
+// import { logoutUser } from "@/app/services/authApi";
+// import { logout as logoutRedux } from "@/app/features/authSlice";
+// import { toast } from "sonner";
+// import { useState } from "react";
+// import { Link } from "react-router-dom";
+
+// const DashboardLayout = () => {
+//   const dispatch = useAppDispatch();
+//   const navigate = useNavigate();
+//   const { theme, toggleTheme } = useTheme();
+//   const user = useAppSelector((state) => state.auth.user);
+//   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+//   const userName = user?.firstName ?? "User";
+//   const avatarSeed = user?.firstName || "User";
+//   const avatarStyle = user?.avatar || "micah";
+//   const avatarUrl = `https://api.dicebear.com/7.x/${avatarStyle}/svg?seed=${avatarSeed}`;
+
+//   const handleLogout = async () => {
+//     try {
+//       await logoutUser();
+//       dispatch(logoutRedux());
+//       localStorage.clear();
+//       navigate("/auth");
+//     } catch (err) {
+//       console.error("Logout failed", err);
+//       toast.error("Logout failed. Try again.");
+//     }
+//   };
+
+//   return (
+//     <div className="flex min-h-screen text-foreground bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950 transition-colors duration-700">
+//       {/* Sidebar */}
+//       <aside
+//         className={`fixed top-0 left-0 z-50 h-screen w-64 border-r bg-white/10 dark:bg-white/5 backdrop-blur-lg flex flex-col justify-between transition-transform md:translate-x-0 ${
+//           sidebarOpen ? "translate-x-0" : "-translate-x-full"
+//         }`}
+//       >
+//         {/* Sidebar Top Section */}
+//         <div className="p-5 flex flex-col gap-6">
+//           {/* Logo */}
+
+//           <div className="flex justify-between items-center">
+//             <Link to="/">
+//               <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+//                 ResumeIQ
+//               </h2>
+//             </Link>
+//             <Button
+//               variant="ghost"
+//               size="icon"
+//               className="md:hidden"
+//               onClick={() => setSidebarOpen(false)}
+//             >
+//               <X className="w-5 h-5" />
+//             </Button>
+//           </div>
+
+//           {/* Navigation */}
+//           <nav className="space-y-3">
+//             <NavLink
+//               to="/dashboard"
+//               className={({ isActive }) =>
+//                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+//                   isActive
+//                     ? "bg-white text-black dark:bg-white dark:text-black shadow-sm"
+//                     : "text-muted-foreground hover:bg-primary/10"
+//                 }`
+//               }
+//             >
+//               <FileText className="w-4 h-4" />
+//               Resume Analysis
+//             </NavLink>
+//             <NavLink
+//               to="/history"
+//               className={({ isActive }) =>
+//                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+//                   isActive
+//                     ? "bg-white text-black dark:bg-white dark:text-black shadow-sm"
+//                     : "text-muted-foreground hover:bg-primary/10"
+//                 }`
+//               }
+//             >
+//               <History className="w-4 h-4" />
+//               History
+//             </NavLink>
+//             <NavLink
+//               to="/rewrite-suggestion"
+//               className={({ isActive }) =>
+//                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+//                   isActive
+//                     ? "bg-white text-black dark:bg-white dark:text-black shadow-sm"
+//                     : "text-muted-foreground hover:bg-primary/10"
+//                 }`
+//               }
+//             >
+//               <Sparkles className="w-4 h-4" />
+//               AI Suggestion
+//             </NavLink>
+//             <NavLink
+//               to="/job-match"
+//               className={({ isActive }) =>
+//                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+//                   isActive
+//                     ? "bg-white text-black dark:bg-white dark:text-black shadow-sm"
+//                     : "text-muted-foreground hover:bg-primary/10"
+//                 }`
+//               }
+//             >
+//               <Link2Icon className="w-4 h-4" />
+//               Job Match
+//             </NavLink>
+//           </nav>
+//         </div>
+
+//         {/* Sidebar Bottom (User Avatar) */}
+//         <div className="p-5">
+//           <DropdownMenu>
+//             <DropdownMenuTrigger asChild>
+//               <div className="flex items-center gap-2 cursor-pointer hover:bg-muted/20 p-2 rounded-md transition">
+//                 <img
+//                   src={avatarUrl}
+//                   alt={userName}
+//                   className="w-10 h-10 rounded-full border"
+//                 />
+//                 <span className="text-sm font-medium">{userName}</span>
+//               </div>
+//             </DropdownMenuTrigger>
+//             <DropdownMenuContent align="end" className="w-48">
+//               <DropdownMenuItem onClick={() => navigate("/settings")}>
+//                 <Settings className="mr-2 w-4 h-4" /> Settings
+//               </DropdownMenuItem>
+//               {/* <DropdownMenuItem onClick={() => navigate("/upgrade")}>
+//                 <Rocket className="mr-2 w-4 h-4" /> Upgrade
+//               </DropdownMenuItem> */}
+//               <DropdownMenuItem onClick={handleLogout}>
+//                 <LogOut className="mr-2 w-4 h-4 text-destructive" />
+//                 <span className="text-destructive">Logout</span>
+//               </DropdownMenuItem>
+//             </DropdownMenuContent>
+//           </DropdownMenu>
+//         </div>
+//       </aside>
+
+//       {/* Main Content */}
+//       <div className="flex-1 flex flex-col md:ml-64">
+//         <header className="px-4 py-4 flex items-center justify-between border-b border-white/10 bg-white/10 dark:bg-black/10 backdrop-blur-lg">
+//           <div className="flex items-center gap-4">
+//             <Button
+//               variant="ghost"
+//               size="icon"
+//               className="md:hidden"
+//               onClick={() => setSidebarOpen(true)}
+//             >
+//               <Menu className="w-5 h-5" />
+//             </Button>
+//             {/* <Button
+//               variant="default"
+//               className="gap-2 hidden md:flex"
+//               onClick={() => navigate("/upgrade")}
+//             >
+//               <Rocket className="w-4 h-4" /> Upgrade
+//             </Button> */}
+//           </div>
+//           <div className="flex items-center gap-4">
+//             <Button variant="ghost" size="icon" onClick={toggleTheme}>
+//               {theme === "dark" ? (
+//                 <Sun className="w-5 h-5" />
+//               ) : (
+//                 <Moon className="w-5 h-5" />
+//               )}
+//             </Button>
+//           </div>
+//         </header>
+
+//         <main className="flex-1 p-4 md:p-6 overflow-y-auto">
+//           <div className="w-full max-w-7xl mx-auto bg-white/10 dark:bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl shadow-xl p-4 md:p-8 transition-all duration-700">
+//             <Outlet />
+//           </div>
+//         </main>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default DashboardLayout;
+
 import {
   FileText,
   History,
   LogOut,
   Moon,
-  Rocket,
   Settings,
   Sun,
   Sparkles,
@@ -25,7 +234,6 @@ import { logoutUser } from "@/app/services/authApi";
 import { logout as logoutRedux } from "@/app/features/authSlice";
 import { toast } from "sonner";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const DashboardLayout = () => {
   const dispatch = useAppDispatch();
@@ -51,6 +259,15 @@ const DashboardLayout = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    setSidebarOpen(false); // close sidebar
+    navigate("/"); // redirect to home page
+  };
+
+  const handleCloseSidebar = () => {
+    setSidebarOpen(false); // just close sidebar
+  };
+
   return (
     <div className="flex min-h-screen text-foreground bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950 transition-colors duration-700">
       {/* Sidebar */}
@@ -62,18 +279,18 @@ const DashboardLayout = () => {
         {/* Sidebar Top Section */}
         <div className="p-5 flex flex-col gap-6">
           {/* Logo */}
-
           <div className="flex justify-between items-center">
-            <Link to="/">
-              <h2 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                ResumeIQ
-              </h2>
-            </Link>
+            <h2
+              className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent cursor-pointer"
+              onClick={handleLogoClick}
+            >
+              ResumeIQ
+            </h2>
             <Button
               variant="ghost"
               size="icon"
               className="md:hidden"
-              onClick={() => setSidebarOpen(false)}
+              onClick={handleCloseSidebar}
             >
               <X className="w-5 h-5" />
             </Button>
@@ -83,6 +300,7 @@ const DashboardLayout = () => {
           <nav className="space-y-3">
             <NavLink
               to="/dashboard"
+              onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
                   isActive
@@ -96,6 +314,7 @@ const DashboardLayout = () => {
             </NavLink>
             <NavLink
               to="/history"
+              onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
                   isActive
@@ -109,6 +328,7 @@ const DashboardLayout = () => {
             </NavLink>
             <NavLink
               to="/rewrite-suggestion"
+              onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
                   isActive
@@ -122,6 +342,7 @@ const DashboardLayout = () => {
             </NavLink>
             <NavLink
               to="/job-match"
+              onClick={() => setSidebarOpen(false)}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-all ${
                   isActive
@@ -153,9 +374,6 @@ const DashboardLayout = () => {
               <DropdownMenuItem onClick={() => navigate("/settings")}>
                 <Settings className="mr-2 w-4 h-4" /> Settings
               </DropdownMenuItem>
-              {/* <DropdownMenuItem onClick={() => navigate("/upgrade")}>
-                <Rocket className="mr-2 w-4 h-4" /> Upgrade
-              </DropdownMenuItem> */}
               <DropdownMenuItem onClick={handleLogout}>
                 <LogOut className="mr-2 w-4 h-4 text-destructive" />
                 <span className="text-destructive">Logout</span>
@@ -177,13 +395,6 @@ const DashboardLayout = () => {
             >
               <Menu className="w-5 h-5" />
             </Button>
-            {/* <Button
-              variant="default"
-              className="gap-2 hidden md:flex"
-              onClick={() => navigate("/upgrade")}
-            >
-              <Rocket className="w-4 h-4" /> Upgrade
-            </Button> */}
           </div>
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="icon" onClick={toggleTheme}>
