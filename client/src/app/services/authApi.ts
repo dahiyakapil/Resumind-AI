@@ -2,9 +2,11 @@
 // import type { AuthResponse, User } from "@/types/User";
 // import axios from "@/lib/axios";
 
+
 // type OAuthProvider = "google" | "github";
 
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 // export async function signin(data: SignInFormData): Promise<AuthResponse> {
 //   const res = await axios.post(`${API_BASE_URL}/auth/login`, data, {
@@ -55,6 +57,7 @@
 //   window.location.href = `${API_BASE_URL}/auth/oauth/${provider}`;
 // }
 
+
 // export async function updateAvatar(style: string): Promise<AuthResponse> {
 //   const res = await axios.put(
 //     `${API_BASE_URL}/auth/update-avatar`,
@@ -63,6 +66,8 @@
 //   );
 //   return res.data;
 // }
+
+
 
 // src/services/auth.service.ts
 
@@ -76,9 +81,7 @@ type OAuthProvider = "google" | "github";
  * Sign in a user
  */
 export async function signin(data: SignInFormData): Promise<AuthResponse> {
-  const res = await axios.post<AuthResponse>("/auth/login", data, {
-    withCredentials: true,
-  });
+  const res = await axios.post<AuthResponse>("/auth/login", data, { withCredentials: true });
   return res.data;
 }
 

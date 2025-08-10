@@ -1,8 +1,5 @@
 {
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://resume-ai-backend-szxu.onrender.com/$1"
-    }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
