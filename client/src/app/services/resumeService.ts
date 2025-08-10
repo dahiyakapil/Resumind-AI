@@ -103,6 +103,8 @@
 //   document.body.removeChild(link);
 // }
 
+
+
 import axios from "@/lib/axios";
 import type { AnalysisResponse } from "@/types/resumeAnalysis";
 import type { ResumeTemplateData } from "@/types/User";
@@ -116,9 +118,7 @@ export async function analyzeResumeApi(file: File): Promise<AnalysisResponse> {
 
   const response = await axios.post<AnalysisResponse>("/resume/analyze", form, {
     headers: { "Content-Type": "multipart/form-data" },
-    withCredentials: true,
   });
-
   return response.data;
 }
 
@@ -126,9 +126,7 @@ export async function analyzeResumeApi(file: File): Promise<AnalysisResponse> {
  * Get resume analysis history
  */
 export async function fetchResumeHistoryApi() {
-  const response = await axios.get("/resume/history", {
-    withCredentials: true,
-  });
+  const response = await axios.get("/resume/history");
   return response.data.reports;
 }
 
@@ -136,22 +134,15 @@ export async function fetchResumeHistoryApi() {
  * Delete a specific resume report
  */
 export async function deleteResumeReportApi(reportId: string) {
-  const response = await axios.delete(`/resume/${reportId}`, {
-    withCredentials: true,
-  });
+  const response = await axios.delete(`/resume/${reportId}`);
   return response.data;
 }
 
 /**
  * Re-analyze a previously uploaded resume
  */
-export async function reanalyzeResumeApi(
-  reportId: string
-): Promise<AnalysisResponse> {
-  const res = await axios.put<AnalysisResponse>(
-    `/resume/reanalyze/${reportId}`,
-    { withCredentials: true }
-  );
+export async function reanalyzeResumeApi(reportId: string): Promise<AnalysisResponse> {
+  const res = await axios.put<AnalysisResponse>(`/resume/reanalyze/${reportId}`);
   return res.data;
 }
 
@@ -159,14 +150,10 @@ export async function reanalyzeResumeApi(
  * Download original AI analysis report as PDF
  */
 export async function downloadReportPdfApi(reportId: string): Promise<void> {
-  const response = await axios.get(`/resume/download/${reportId}`, {
-    responseType: "blob",
-  });
-
+  const response = await axios.get(`/resume/download/${reportId}`, { responseType: "blob" });
   const blob = new Blob([response.data], { type: "application/pdf" });
   const downloadUrl = window.URL.createObjectURL(blob);
   const link = document.createElement("a");
-
   link.href = downloadUrl;
   link.download = `resume-report-${reportId}.pdf`;
   document.body.appendChild(link);
@@ -178,9 +165,7 @@ export async function downloadReportPdfApi(reportId: string): Promise<void> {
  * Get a single resume report by ID
  */
 export async function fetchResumeReportByIdApi(reportId: string) {
-  const response = await axios.get(`/resume/${reportId}`, {
-    withCredentials: true,
-  });
+  const response = await axios.get(`/resume/${reportId}`);
   return response.data;
 }
 
@@ -193,16 +178,10 @@ export async function downloadUpdatedResumePdfApi(
   theme: string,
   userData: ResumeTemplateData
 ) {
-  const response = await axios.post(
-    `/resume/download-updated/${reportId}`,
-    { appliedRewrites, theme, userData },
-    { responseType: "blob" }
-  );
-
+  const response = await axios.post(`/resume/download-updated/${reportId}`, { appliedRewrites, theme, userData }, { responseType: "blob" });
   const blob = new Blob([response.data], { type: "application/pdf" });
   const downloadUrl = window.URL.createObjectURL(blob);
   const link = document.createElement("a");
-
   link.href = downloadUrl;
   link.download = `updated-resume-${reportId}.pdf`;
   document.body.appendChild(link);

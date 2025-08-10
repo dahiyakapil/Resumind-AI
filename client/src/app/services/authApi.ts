@@ -66,51 +66,51 @@
 
 // src/services/auth.service.ts
 
+
 import type { SignInFormData, SignUpFormData } from "@/lib/validationSchemas";
 import type { AuthResponse, User } from "@/types/User";
-import axios from "@/lib/axios"; // axios instance will handle baseURL + withCredentials
+import axios from "@/lib/axios";
 
 type OAuthProvider = "google" | "github";
 
 /**
- * Sign in a user
+ * Sign in a user (store JWT in localStorage)
  */
 export async function signin(data: SignInFormData): Promise<AuthResponse> {
-  const res = await axios.post<AuthResponse>("/auth/login", data, {
-    withCredentials: true,
-  });
+  const res = await axios.post<AuthResponse>("/auth/login", data);
+  if (res.data.token) {
+    localStorage.setItem("token", res.data.token);
+  }
   return res.data;
 }
 
 /**
- * Sign up a new user
+ * Sign up a new user (store JWT if returned)
  */
-export async function signup(data: SignUpFormData): Promise<void> {
+export async function signup(data: SignUpFormData): Promise<AuthResponse> {
   const { fullName, email, password } = data;
   const [firstName, ...rest] = fullName.trim().split(" ");
   const lastName = rest.join(" ") || "";
 
-  await axios.post("/auth/signup", { firstName, lastName, email, password });
+  const res = await axios.post<AuthResponse>("/auth/signup", { firstName, lastName, email, password });
+  if (res.data.token) {
+    localStorage.setItem("token", res.data.token);
+  }
+  return res.data;
 }
 
 /**
  * Get current logged-in user
  */
 export async function getCurrentUser(): Promise<AuthResponse> {
-  const res = await axios.get<AuthResponse>("/auth/me", {
-    withCredentials: true,
-  });
+  const res = await axios.get<AuthResponse>("/auth/me");
   return res.data;
 }
 
 /**
  * Update profile details
  */
-export async function updateProfile(data: {
-  firstName: string;
-  lastName: string;
-  email: string;
-}): Promise<User> {
+export async function updateProfile(data: { firstName: string; lastName: string; email: string; }): Promise<User> {
   const res = await axios.put<{ user: User }>("/auth/update-profile", data);
   return res.data.user;
 }
@@ -118,10 +118,7 @@ export async function updateProfile(data: {
 /**
  * Update account password
  */
-export async function updatePassword(data: {
-  currentPassword: string;
-  newPassword: string;
-}): Promise<void> {
+export async function updatePassword(data: { currentPassword: string; newPassword: string; }): Promise<void> {
   await axios.put("/auth/update-password", data);
 }
 
@@ -129,7 +126,7 @@ export async function updatePassword(data: {
  * Logout the user
  */
 export async function logoutUser(): Promise<void> {
-  await axios.post("/auth/logout", {});
+  localStorage.removeItem("token");
 }
 
 /**
