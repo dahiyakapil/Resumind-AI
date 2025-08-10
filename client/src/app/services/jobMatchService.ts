@@ -1,6 +1,6 @@
 // // src/services/jobMatchService.ts
 
-// import axios from "@/lib/axios";
+// import apiClient from "@/lib/apiClient";
 
 // export interface JobMatchResponse {
 //   message: string;
@@ -29,7 +29,7 @@
 // export const matchResumeWithJob = async (
 //   formData: FormData
 // ): Promise<JobMatchResponse> => {
-//   const response = await axios.post(`${API_BASE_URL}/job/match`, formData, {
+//   const response = await apiClient.post(`${API_BASE_URL}/job/match`, formData, {
 //     headers: {
 //       "Content-Type": "multipart/form-data",
 //     },
@@ -41,7 +41,7 @@
 
 
 
-import axios from "@/lib/axios";
+import apiClient from "@/lib/axios";
 
 export interface JobMatchResponse {
   message: string;
@@ -68,7 +68,7 @@ export interface JobMatchResponse {
  * Match resume with job description
  */
 export const matchResumeWithJob = async (formData: FormData): Promise<JobMatchResponse> => {
-  const response = await axios.post<JobMatchResponse>("/job/match", formData, {
+  const response = await apiClient.post<JobMatchResponse>("/job/match", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return response.data;

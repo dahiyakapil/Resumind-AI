@@ -1,11 +1,10 @@
 import Axios from "axios";
 
-const axiosInstance = Axios.create({
+const apiClient = Axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
 });
 
-// ✅ Automatically attach JWT to every request
-axiosInstance.interceptors.request.use((config) => {
+apiClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
@@ -13,4 +12,4 @@ axiosInstance.interceptors.request.use((config) => {
   return config;
 });
 
-export default axiosInstance;
+export default apiClient;

@@ -1,13 +1,13 @@
 // import type { SignInFormData, SignUpFormData } from "@/lib/validationSchemas";
 // import type { AuthResponse, User } from "@/types/User";
-// import axios from "@/lib/axios";
+// import apiClient from "@/lib/apiClient";
 
 // type OAuthProvider = "google" | "github";
 
 // const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // export async function signin(data: SignInFormData): Promise<AuthResponse> {
-//   const res = await axios.post(`${API_BASE_URL}/auth/login`, data, {
+//   const res = await apiClient.post(`${API_BASE_URL}/auth/login`, data, {
 //     withCredentials: true,
 //   });
 //   return res.data;
@@ -17,13 +17,13 @@
 //   const { fullName, email, password } = data;
 //   const [firstName, ...rest] = fullName.trim().split(" ");
 //   const lastName = rest.join(" ") || "";
-//   await axios.post(`${API_BASE_URL}/auth/signup`, { firstName, lastName, email, password }, {
+//   await apiClient.post(`${API_BASE_URL}/auth/signup`, { firstName, lastName, email, password }, {
 //     withCredentials: true,
 //   });
 // }
 
 // export async function getCurrentUser(): Promise<AuthResponse> {
-//   const res = await axios.get(`${API_BASE_URL}/auth/me`, { withCredentials: true });
+//   const res = await apiClient.get(`${API_BASE_URL}/auth/me`, { withCredentials: true });
 //   return res.data;
 // }
 
@@ -32,7 +32,7 @@
 //   lastName: string;
 //   email: string;
 // }): Promise<User> {
-//   const res = await axios.put(`${API_BASE_URL}/auth/update-profile`, data, {
+//   const res = await apiClient.put(`${API_BASE_URL}/auth/update-profile`, data, {
 //     withCredentials: true,
 //   });
 //   return res.data.user;
@@ -42,13 +42,13 @@
 //   currentPassword: string;
 //   newPassword: string;
 // }): Promise<void> {
-//   await axios.put(`${API_BASE_URL}/auth/update-password`, data, {
+//   await apiClient.put(`${API_BASE_URL}/auth/update-password`, data, {
 //     withCredentials: true,
 //   });
 // }
 
 // export async function logoutUser(): Promise<void> {
-//   await axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true });
+//   await apiClient.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true });
 // }
 
 // export function oauthLogin(provider: OAuthProvider) {
@@ -56,7 +56,7 @@
 // }
 
 // export async function updateAvatar(style: string): Promise<AuthResponse> {
-//   const res = await axios.put(
+//   const res = await apiClient.put(
 //     `${API_BASE_URL}/auth/update-avatar`,
 //     { style },
 //     { withCredentials: true }
@@ -69,7 +69,7 @@
 
 import type { SignInFormData, SignUpFormData } from "@/lib/validationSchemas";
 import type { AuthResponse, User } from "@/types/User";
-import axios from "@/lib/axios";
+import apiClient from "@/lib/axios";
 
 type OAuthProvider = "google" | "github";
 
@@ -77,7 +77,7 @@ type OAuthProvider = "google" | "github";
  * Sign in a user (store JWT in localStorage)
  */
 export async function signin(data: SignInFormData): Promise<AuthResponse> {
-  const res = await axios.post<AuthResponse>("/auth/login", data);
+  const res = await apiClient.post<AuthResponse>("/auth/login", data);
   if (res.data.token) {
     localStorage.setItem("token", res.data.token);
   }
@@ -92,7 +92,7 @@ export async function signup(data: SignUpFormData): Promise<AuthResponse> {
   const [firstName, ...rest] = fullName.trim().split(" ");
   const lastName = rest.join(" ") || "";
 
-  const res = await axios.post<AuthResponse>("/auth/signup", { firstName, lastName, email, password });
+  const res = await apiClient.post<AuthResponse>("/auth/signup", { firstName, lastName, email, password });
   if (res.data.token) {
     localStorage.setItem("token", res.data.token);
   }
@@ -103,7 +103,7 @@ export async function signup(data: SignUpFormData): Promise<AuthResponse> {
  * Get current logged-in user
  */
 export async function getCurrentUser(): Promise<AuthResponse> {
-  const res = await axios.get<AuthResponse>("/auth/me");
+  const res = await apiClient.get<AuthResponse>("/auth/me");
   return res.data;
 }
 
@@ -111,7 +111,7 @@ export async function getCurrentUser(): Promise<AuthResponse> {
  * Update profile details
  */
 export async function updateProfile(data: { firstName: string; lastName: string; email: string; }): Promise<User> {
-  const res = await axios.put<{ user: User }>("/auth/update-profile", data);
+  const res = await apiClient.put<{ user: User }>("/auth/update-profile", data);
   return res.data.user;
 }
 
@@ -119,7 +119,7 @@ export async function updateProfile(data: { firstName: string; lastName: string;
  * Update account password
  */
 export async function updatePassword(data: { currentPassword: string; newPassword: string; }): Promise<void> {
-  await axios.put("/auth/update-password", data);
+  await apiClient.put("/auth/update-password", data);
 }
 
 /**
@@ -140,6 +140,6 @@ export function oauthLogin(provider: OAuthProvider) {
  * Update avatar style
  */
 export async function updateAvatar(style: string): Promise<AuthResponse> {
-  const res = await axios.put<AuthResponse>("/auth/update-avatar", { style });
+  const res = await apiClient.put<AuthResponse>("/auth/update-avatar", { style });
   return res.data;
 }
