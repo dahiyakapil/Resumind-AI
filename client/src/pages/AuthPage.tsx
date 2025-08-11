@@ -1,5 +1,5 @@
 import { ToggleTabs } from '../components/ToggleTabs';
-import { AuthForm } from '../components/AuthForm';
+import {AuthForm}  from '../components/AuthForm';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -43,3 +43,5 @@ const AuthPage = () => {
 };
 
 export default AuthPage;
+
+
