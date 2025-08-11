@@ -11,7 +11,7 @@ An intelligent, fully responsive AI-powered resume analyzer that gives ATS score
 
 ## 🚀 Live Preview
 
-🔗 [https://resumeiq.vercel.app](https://your-live-url.vercel.app)
+🔗 [https://scanhire.vercel.app/](https://scanhire.vercel.app/)
 
 ---
 
