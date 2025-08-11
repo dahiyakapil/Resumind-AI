@@ -1,4 +1,4 @@
-# 🧠 ResumeIQ - AI Resume Analyzer
+# 🧠 ScanHire - AI Resume Analyzer
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Tech: MERN Stack](https://img.shields.io/badge/stack-MERN-blueviolet)](#tech-stack)
