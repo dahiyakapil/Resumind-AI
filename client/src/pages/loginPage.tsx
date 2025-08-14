@@ -45,7 +45,7 @@ export default function LoginPage() {
 
       {/* Back Button */}
       <motion.button
-        onClick={() => navigate(-1)}
+        onClick={() => navigate("/")} 
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
