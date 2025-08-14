@@ -214,6 +214,17 @@ export async function analyzeResumeApi(file: File): Promise<AnalysisResponse> {
   return response.data;
 }
 
+// AI Rewrite Suggestion
+export async function aiSuggestionsAnalyzeResumeApi(file: File): Promise<AnalysisResponse> {
+  const form = new FormData();
+  form.append("resume", file);
+
+  const response = await apiClient.post<AnalysisResponse>("/resume/ai-suggestion", form, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+  return response.data;
+}
+
 /** Get resume analysis history */
 export async function fetchResumeHistoryApi() {
   const response = await apiClient.get("/resume/history");

@@ -83,6 +83,29 @@ export const analyzeResume = createAsyncThunk<
   }
 });
 
+
+export const aiSuggestionAnalyzeResume = createAsyncThunk<
+  AnalysisResponse,
+  File,
+  { rejectValue: string }
+>("resumeAnalysis/aiSuggestionAnalyzeResume", async (file, { rejectWithValue }) => {
+  try {
+    return await analyzeResumeApi(file);
+  } catch (err: unknown) {
+    let message = "Unknown error";
+
+    if (axios.isAxiosError(err)) {
+      const data = err.response?.data as BackendError | undefined;
+      if (data?.message) message = data.message;
+      else if (err.message) message = err.message;
+    } else if (err instanceof Error) {
+      message = err.message;
+    }
+
+    return rejectWithValue(message);
+  }
+});
+
 // ✅ Fetch History
 export const fetchResumeHistory = createAsyncThunk<
   AnalysisResponse[],
@@ -228,6 +251,32 @@ const resumeAnalysisSlice = createSlice({
         }
       )
       .addCase(analyzeResume.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload ?? "Failed to analyze";
+      })
+      .addCase(aiSuggestionAnalyzeResume.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(
+        aiSuggestionAnalyzeResume.fulfilled,
+        (state, action: PayloadAction<AnalysisResponse>) => {
+          state.loading = false;
+          state.data = action.payload;
+
+          if (typeof window !== "undefined") {
+            localStorage.setItem(LOCAL_KEY, JSON.stringify(action.payload));
+          }
+
+          state.history = [
+            action.payload,
+            ...state.history.filter(
+              (h) => h.reportId !== action.payload.reportId
+            ),
+          ];
+        }
+      )
+      .addCase(aiSuggestionAnalyzeResume.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload ?? "Failed to analyze";
       })

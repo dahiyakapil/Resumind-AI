@@ -268,6 +268,9 @@ const DashboardLayout = () => {
     setSidebarOpen(false); // just close sidebar
   };
 
+ 
+
+
   return (
     <div className="flex min-h-screen text-foreground bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-purple-950 transition-colors duration-700">
       {/* Sidebar */}
@@ -284,7 +287,7 @@ const DashboardLayout = () => {
               className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent cursor-pointer"
               onClick={handleLogoClick}
             >
-              ResumeIQ
+              Resumind AI
             </h2>
             <Button
               variant="ghost"

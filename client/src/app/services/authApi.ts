@@ -1,29 +1,18 @@
-// import type { SignInFormData, SignUpFormData } from "@/lib/validationSchemas";
+// import type { SigninFormData } from "@/lib/validationSchemas";
 // import type { AuthResponse, User } from "@/types/User";
-// import apiClient from "@/lib/apiClient";
+// import apiClient from "@/lib/axios";
 
 // type OAuthProvider = "google" | "github";
 
-// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+// const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
 
-// export async function signin(data: SignInFormData): Promise<AuthResponse> {
-//   const res = await apiClient.post(`${API_BASE_URL}/auth/login`, data, {
-//     withCredentials: true,
-//   });
+// export async function signin(data: SigninFormData): Promise<AuthResponse> {
+//   const res = await apiClient.post(`${API_BASE_URL}/auth/login`, data);
 //   return res.data;
 // }
 
-// export async function signup(data: SignUpFormData): Promise<void> {
-//   const { fullName, email, password } = data;
-//   const [firstName, ...rest] = fullName.trim().split(" ");
-//   const lastName = rest.join(" ") || "";
-//   await apiClient.post(`${API_BASE_URL}/auth/signup`, { firstName, lastName, email, password }, {
-//     withCredentials: true,
-//   });
-// }
-
 // export async function getCurrentUser(): Promise<AuthResponse> {
-//   const res = await apiClient.get(`${API_BASE_URL}/auth/me`, { withCredentials: true });
+//   const res = await apiClient.get(`${API_BASE_URL}/auth/me`);
 //   return res.data;
 // }
 
@@ -48,7 +37,11 @@
 // }
 
 // export async function logoutUser(): Promise<void> {
-//   await apiClient.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true });
+//   await apiClient.post(
+//     `${API_BASE_URL}/auth/logout`,
+//     {},
+//     { withCredentials: true }
+//   );
 // }
 
 // export function oauthLogin(provider: OAuthProvider) {
@@ -66,80 +59,101 @@
 
 // src/services/auth.service.ts
 
+// import type { AuthResponse, User } from "@/types/User";
+// import apiClient from "@/lib/axios";
 
-import type { SignInFormData, SignUpFormData } from "@/lib/validationSchemas";
+// /**
+//  * Get current logged-in user
+//  */
+// export async function getCurrentUser(): Promise<AuthResponse> {
+//   const res = await apiClient.get<AuthResponse>("/auth/me");
+//   return res.data;
+// }
+
+// /**
+//  * Update profile details
+//  */
+// export async function updateProfile(data: { firstName: string; lastName: string; email: string; }): Promise<User> {
+//   const res = await apiClient.put<{ user: User }>("/auth/update-profile", data);
+//   return res.data.user;
+// }
+
+// /**
+//  * Update account password
+//  */
+// export async function updatePassword(data: { currentPassword: string; newPassword: string; }): Promise<void> {
+//   await apiClient.put("/auth/update-password", data);
+// }
+
+// /**
+//  * Logout the user
+//  */
+// export async function logoutUser(): Promise<void> {
+//   localStorage.removeItem("token");
+// }
+
+// /**
+//  * Update avatar style
+//  */
+// export async function updateAvatar(style: string): Promise<AuthResponse> {
+//   const res = await apiClient.put<AuthResponse>("/auth/update-avatar", { style });
+//   return res.data;
+// }
+
+import type { SigninFormData } from "@/lib/validationSchemas";
 import type { AuthResponse, User } from "@/types/User";
 import apiClient from "@/lib/axios";
 
-type OAuthProvider = "google" | "github";
 
-/**
- * Sign in a user (store JWT in localStorage)
- */
-export async function signin(data: SignInFormData): Promise<AuthResponse> {
-  const res = await apiClient.post<AuthResponse>("/auth/login", data);
-  if (res.data.token) {
-    localStorage.setItem("token", res.data.token);
-  }
+
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
+
+export async function signin(data: SigninFormData): Promise<AuthResponse> {
+  const res = await apiClient.post<AuthResponse>(
+    `${API_BASE_URL}/auth/login`,
+    data
+  );
   return res.data;
 }
 
-/**
- * Sign up a new user (store JWT if returned)
- */
-export async function signup(data: SignUpFormData): Promise<AuthResponse> {
-  const { fullName, email, password } = data;
-  const [firstName, ...rest] = fullName.trim().split(" ");
-  const lastName = rest.join(" ") || "";
-
-  const res = await apiClient.post<AuthResponse>("/auth/signup", { firstName, lastName, email, password });
-  if (res.data.token) {
-    localStorage.setItem("token", res.data.token);
-  }
-  return res.data;
-}
-
-/**
- * Get current logged-in user
- */
 export async function getCurrentUser(): Promise<AuthResponse> {
-  const res = await apiClient.get<AuthResponse>("/auth/me");
+  const res = await apiClient.get<AuthResponse>(`${API_BASE_URL}/auth/me`);
   return res.data;
 }
 
-/**
- * Update profile details
- */
-export async function updateProfile(data: { firstName: string; lastName: string; email: string; }): Promise<User> {
-  const res = await apiClient.put<{ user: User }>("/auth/update-profile", data);
+export async function updateProfile(data: {
+  firstName: string;
+  lastName: string;
+  email: string;
+}): Promise<User> {
+  const res = await apiClient.put<{ user: User }>(
+    `${API_BASE_URL}/auth/update-profile`,
+    data
+  );
   return res.data.user;
 }
 
-/**
- * Update account password
- */
-export async function updatePassword(data: { currentPassword: string; newPassword: string; }): Promise<void> {
-  await apiClient.put("/auth/update-password", data);
+export async function updatePassword(data: {
+  currentPassword: string;
+  newPassword: string;
+}): Promise<void> {
+  await apiClient.put<void>(`${API_BASE_URL}/auth/update-password`, data);
 }
 
-/**
- * Logout the user
- */
 export async function logoutUser(): Promise<void> {
-  localStorage.removeItem("token");
+  await apiClient.post(
+    `${API_BASE_URL}/auth/logout`,
+    {}
+  );
 }
 
-/**
- * Redirect to OAuth login
- */
-export function oauthLogin(provider: OAuthProvider) {
-  window.location.href = `/auth/oauth/${provider}`;
-}
 
-/**
- * Update avatar style
- */
+
 export async function updateAvatar(style: string): Promise<AuthResponse> {
-  const res = await apiClient.put<AuthResponse>("/auth/update-avatar", { style });
+  const res = await apiClient.put<AuthResponse>(
+    `${API_BASE_URL}/auth/update-avatar`,
+    { style }
+  );
   return res.data;
 }

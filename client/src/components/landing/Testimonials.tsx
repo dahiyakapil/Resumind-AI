@@ -4,27 +4,27 @@ import { Quote, Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Chen',
-    role: 'Senior Technical Recruiter',
-    company: 'TechCorp',
+    name: 'Aarav Mehta',
+    role: 'Computer Science Graduate',
+    company: 'Placed at Infosys',
+    avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
+    quote: 'Resumind AI helped me restructure my resume and improve my ATS score from 52% to 92%. I got shortlisted within a week!',
+    rating: 5
+  },
+  {
+    name: 'Priya Sharma',
+    role: 'MBA Fresher',
+    company: 'Hired at Deloitte',
     avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
-    quote: 'ResumeIq has revolutionized how we pre-screen resumes. The ATS compatibility scores are incredibly accurate.',
+    quote: 'The AI suggestions were spot on! I understood exactly what recruiters look for and landed three interviews in a month.',
     rating: 5
   },
   {
-    name: 'Michael Rodriguez',
-    role: 'HR Director',
-    company: 'StartupHub',
-    avatar: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
-    quote: 'The AI suggestions helped candidates improve their resumes by 40% on average. Game-changing tool!',
-    rating: 5
-  },
-  {
-    name: 'Jennifer Walsh',
-    role: 'Talent Acquisition Lead',
-    company: 'Fortune500Co',
+    name: 'Rahul Verma',
+    role: 'B.Tech Final Year Student',
+    company: 'Intern at Microsoft',
     avatar: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
-    quote: 'Finally, a tool that bridges the gap between job seekers and what recruiters actually look for.',
+    quote: 'I never knew my resume formatting was hurting my chances. Resumind AI fixed everything and got me my dream internship.',
     rating: 5
   }
 ];
@@ -44,11 +44,11 @@ export const Testimonials: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             Loved by{' '}
             <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Recruiters
+              Job Seekers
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            See what industry professionals are saying about ResumeIQ.
+            See how students and professionals improved their chances with Resumind.
           </p>
         </motion.div>
 
@@ -93,7 +93,7 @@ export const Testimonials: React.FC = () => {
                       {testimonial.name}
                     </p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      {testimonial.role} at {testimonial.company}
+                      {testimonial.role} – {testimonial.company}
                     </p>
                   </div>
                 </div>

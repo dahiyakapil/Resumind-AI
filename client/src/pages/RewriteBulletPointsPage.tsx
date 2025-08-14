@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/app/store";
-import { analyzeResume, } from "@/app/features/resumeAnalysis/resumeAnalysisSlice";
+import { aiSuggestionAnalyzeResume } from "@/app/features/resumeAnalysis/resumeAnalysisSlice";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Sparkles, UploadCloud, FileText, Download, RefreshCcw } from "lucide-react";
@@ -34,7 +34,7 @@ export const RewriteBulletPointsPage: React.FC = () => {
     toast.loading("Analyzing resume...", { id: "upload-toast" });
 
     try {
-      const result = await dispatch(analyzeResume(file));
+      const result = await dispatch(aiSuggestionAnalyzeResume(file));
       const data = result.payload as AnalysisResponse;
 
       if (data?.resumeUrl) {
@@ -99,7 +99,7 @@ export const RewriteBulletPointsPage: React.FC = () => {
   return (
     <div className="min-h-screen px-6 py-10 text-foreground">
       <h1 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <Sparkles className="text-yellow-500" /> AI Suggestions for Bullet Points
+        <Sparkles className="text-yellow-500" /> AI Suggestions for Project Bullet Points
       </h1>
 
       {!resumeUrl ? (

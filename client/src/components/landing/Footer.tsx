@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Scan, Github, Linkedin, Mail, Heart } from 'lucide-react';
+import { Scan, Github, Linkedin, Mail} from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -19,17 +19,13 @@ export const Footer: React.FC = () => {
               <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg">
                 <Scan className="h-6 w-6 text-white" />
               </div>
-              <span className="text-xl font-bold">ResumeIq</span>
+              <span className="text-xl font-bold">Resumind AI</span>
             </div>
             <p className="text-gray-300 mb-6 max-w-md leading-relaxed">
               Revolutionizing resume optimization with AI-powered analysis. 
               Built for the modern recruitment landscape.
             </p>
-            <div className="flex items-center space-x-2 text-sm text-gray-400">
-              <span>Built with</span>
-              <Heart className="h-4 w-4 text-red-400" />
-              <span>using MERN stack</span>
-            </div>
+            
           </motion.div>
 
           {/* Quick Links */}
@@ -93,7 +89,7 @@ export const Footer: React.FC = () => {
           viewport={{ once: true }}
           className="pt-8 border-t border-gray-700 text-center text-gray-400"
         >
-          <p>&copy; 2025 ResumeIq. All rights reserved.</p>
+          <p>&copy; 2025 Resumind AI. All rights reserved.</p>
         </motion.div>
       </div>
     </footer>
