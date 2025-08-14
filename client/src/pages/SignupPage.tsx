@@ -12,6 +12,7 @@ import { schemaSignup } from "@/lib/validationSchemas";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 
 interface SignupFormValues {
   firstName: string;
@@ -174,6 +175,14 @@ export default function SignupPage() {
               >
                 {loading ? "Sending OTP..." : "Sign Up"}
               </Button>
+
+              {/* Already have an account */}
+              <p className="text-center text-gray-300 text-sm mt-3">
+                Already have an account?{" "}
+                <Link to="/login" className="text-purple-400 hover:underline">
+                  Login
+                </Link>
+              </p>
             </form>
           </CardContent>
         </Card>
