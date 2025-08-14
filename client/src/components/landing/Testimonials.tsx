@@ -23,7 +23,7 @@ const testimonials = [
     name: 'Rahul Verma',
     role: 'B.Tech Final Year Student',
     company: 'Intern at Microsoft',
-    avatar: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
+    avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150&h=150&dpr=2',
     quote: 'I never knew my resume formatting was hurting my chances. Resumind AI fixed everything and got me my dream internship.',
     rating: 5
   }
