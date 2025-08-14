@@ -45,7 +45,7 @@ An intelligent, fully responsive AI-powered resume analyzer that gives ATS score
 - 🔒 Auth with Email, Google, GitHub
 - 📥 Cloudinary-based secure PDF uploads
 - 📊 Job-resume matching (DeepSeek / Gemini)
-- 🌙 Light + Dark mode (shadcn/ui)
+- 🌙 Light + Dark mode
 
 ---
 
