@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Tech: MERN Stack](https://img.shields.io/badge/stack-MERN-blueviolet)](#tech-stack)
-[![Live Demo](https://img.shields.io/badge/demo-live-green?style=flat&logo=vercel)](https://your-live-url.vercel.app)
+[![Live Demo](https://img.shields.io/badge/demo-live-green?style=flat&logo=vercel)](https://resumindai-ashy.vercel.app/)
 [![Status](https://img.shields.io/badge/status-in%20progress-yellow)](#status)
 
 An intelligent, fully responsive AI-powered resume analyzer that gives ATS scores, identifies weak areas, suggests improvements, and offers bullet-point rewrites using AI.
