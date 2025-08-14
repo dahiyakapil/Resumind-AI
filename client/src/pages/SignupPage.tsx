@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import { ArrowLeft, ArrowLeftIcon } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 interface SignupFormValues {
   firstName: string;
