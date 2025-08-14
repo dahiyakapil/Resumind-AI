@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import { ArrowLeft, ArrowLeftIcon } from "lucide-react";
 
 interface SignupFormValues {
   firstName: string;
@@ -75,16 +76,17 @@ export default function SignupPage() {
         ))}
       </div>
 
-      {/* Back Button - fixed at top */}
-      <div className="absolute top-6 left-6 z-20">
-        <Button
-          variant="ghost"
-          className="text-white hover:bg-white/20"
-          onClick={() => navigate("/")}
-        >
-          ← Back
-        </Button>
-      </div>
+     {/* Back Button */}
+      <motion.button
+        onClick={() => navigate("/")} 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition"
+      >
+        <ArrowLeft size={18} />
+       
+      </motion.button>
 
       {/* Glassmorphism card */}
       <motion.div
