@@ -1,8 +1,13 @@
 import axios, { AxiosError } from "axios";
-import type { ApiResponse, SendOtpPayload, VerifyOtpPayload, VerifyOtpResponse } from "@/types/User";
+import type {
+  ApiResponse,
+  SendOtpPayload,
+  VerifyOtpPayload,
+  VerifyOtpResponse,
+} from "@/types/User";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:4000/api";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+console.log(API_BASE_URL);
 
 export const sendOtpService = async (
   data: SendOtpPayload
@@ -15,7 +20,12 @@ export const sendOtpService = async (
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError<ApiResponse>;
-    throw axiosError.response?.data || { success: false, message: "Failed to send OTP" };
+    throw (
+      axiosError.response?.data || {
+        success: false,
+        message: "Failed to send OTP",
+      }
+    );
   }
 };
 
@@ -30,6 +40,11 @@ export const verifyOtpService = async (
     return res.data;
   } catch (error) {
     const axiosError = error as AxiosError<VerifyOtpResponse>;
-    throw axiosError.response?.data || { success: false, message: "OTP verification failed" };
+    throw (
+      axiosError.response?.data || {
+        success: false,
+        message: "OTP verification failed",
+      }
+    );
   }
 };
