@@ -52,7 +52,7 @@ export default function LoginPage() {
         className="absolute top-4 left-4 sm:top-6 sm:left-6 flex items-center gap-2 px-3 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition"
       >
         <ArrowLeft size={18} />
-        Back
+       
       </motion.button>
 
       {/* Glassmorphism Login Card */}
