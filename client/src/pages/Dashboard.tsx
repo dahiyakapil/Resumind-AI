@@ -1,6 +1,6 @@
 
 
-import React from "react";
+
 import ResumeAnalysisPage from "./ResumeAnalysisPage";
 
 const Dashboard = () => {

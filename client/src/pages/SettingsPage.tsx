@@ -1,4 +1,4 @@
-import React from "react";
+
 import { AvatarPicker } from "@/components/user-managment/settings/AvatarPicker";
 import { ProfileForm } from "@/components/user-managment/settings/ProfileForm";
 import { PasswordForm } from "@/components/user-managment/settings/PasswordForm";

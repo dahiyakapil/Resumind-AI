@@ -62,6 +62,7 @@ const HistoryPage = () => {
       await dispatch(downloadReportPdf(reportId)).unwrap();
       toast.success("✅ Report downloaded!");
     } catch (err) {
+      console.log(err)
       toast.error("❌ Failed to download PDF");
     } finally {
       toast.dismiss(toastId);

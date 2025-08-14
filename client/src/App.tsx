@@ -130,7 +130,7 @@
 
 // export default App;
 
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/contexts/ThemeContext";
 import { Toaster } from "sonner";

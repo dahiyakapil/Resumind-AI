@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState} from "react";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "@/app/store";
 import { aiSuggestionAnalyzeResume } from "@/app/features/resumeAnalysis/resumeAnalysisSlice";
