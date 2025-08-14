@@ -1,5 +1,5 @@
 // src/components/ScoreCard.tsx
-import React from "react";
+
 import {
   CircularProgressbar,
   buildStyles,

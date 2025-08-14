@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import{ useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { updateUserAvatar } from "@/app/features/authSlice";
 import { toast } from "sonner";
