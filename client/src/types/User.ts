@@ -1,80 +1,40 @@
-// export interface User {
-//   id: string;
-//   firstName: string;
-//   lastName?: string;
-//   email: string;
-//   // add other fields your backend returns
-// }
-
-// export interface AuthResponse {
-//   user: User;
-//   token: string;
-
-// }
-
-// export interface User {
-//   id: string;
-//   firstName: string;
-//   lastName?: string;
-//   email: string;
-//   avatar: string;
-// }
-
-// export interface ResumeTemplateData {
-//   fullName: string;
-//   email: string;
-//   phone: string;
-//   location: string;
-//   summary: string;
-//   skills: string[];
-//   education: {
-//     degree: string;
-//     institution: string;
-//     years: string;
-//   };
-//   projects: {
-//     title: string;
-//     bullets: string[];
-//   }[];
-//   appliedRewrites: string[];
-// }
-
-
-
-
-
-
 export interface User {
   id: string;
   firstName: string;
   lastName?: string;
   email: string;
   avatar: string;
-}
-
-export interface AuthResponse {
-  user: User;
-  token: string;
+  role: "admin" | "user";
 }
 
 export interface ResumeTemplateData {
-  fullName: string;
-  email: string;
-  phone: string;
-  location: string;
-  summary: string;
-  skills: string[];
-  education: {
-    degree: string;
-    institution: string;
-    years: string;
+    _id: string;
+  reportId: string;
+  resumeUrl: string;
+  resumeName: string;
+  createdAt: string;
+  score: number;
+  analysis: {
+    ats_score: number;
+    suggestions: string[];
+    repeated_phrases: string[];
+    buzzwords: string[];
+    action_verbs: string[];
+    missing_sections: string[];
+    tone_analysis: string;
+    verdict_summary: string;
   };
-  projects: {
-    title: string;
-    bullets: string[];
-  }[];
-  appliedRewrites: string[];
+  user: {
+    _id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    avatar: string;
+    role: string;
+  };
 }
+
+
 
 /* ---------------- OTP Types ---------------- */
 
@@ -92,7 +52,6 @@ export interface SendOtpPayload {
   email: string;
   password: string;
 }
-
 
 /** Payload for verifying OTP */
 export interface VerifyOtpPayload {

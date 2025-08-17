@@ -107,7 +107,7 @@ import apiClient from "@/lib/axios";
 
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-console.log(API_BASE_URL)
+
 
 export async function signin(data: SigninFormData): Promise<AuthResponse> {
   const res = await apiClient.post<AuthResponse>(

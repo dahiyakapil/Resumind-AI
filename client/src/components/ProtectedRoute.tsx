@@ -29,9 +29,6 @@ export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const dispatch = useAppDispatch();
   const { user, isLoading } = useAppSelector((state) => state.auth);
 
-  console.log("Auth user:", user);
-  console.log("Is Loading:", isLoading);
-
   useEffect(() => {
     if (!user && !isLoading) {
       dispatch(fetchCurrentUser());
