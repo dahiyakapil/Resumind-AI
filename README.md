@@ -1,8 +1,8 @@
-# 🧠 ScanHire - AI Resume Analyzer
+# 🧠 Resumind AI - AI Resume Analyzer
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Tech: MERN Stack](https://img.shields.io/badge/stack-MERN-blueviolet)](#tech-stack)
-[![Live Demo](https://img.shields.io/badge/demo-live-green?style=flat&logo=vercel)](https://your-live-url.vercel.app)
+[![Live Demo](https://img.shields.io/badge/demo-live-green?style=flat&logo=vercel)](https://resumindai-ashy.vercel.app/)
 [![Status](https://img.shields.io/badge/status-in%20progress-yellow)](#status)
 
 An intelligent, fully responsive AI-powered resume analyzer that gives ATS scores, identifies weak areas, suggests improvements, and offers bullet-point rewrites using AI.
@@ -11,7 +11,7 @@ An intelligent, fully responsive AI-powered resume analyzer that gives ATS score
 
 ## 🚀 Live Preview
 
-🔗 [https://scanhire.vercel.app/](https://scanhire.vercel.app/)
+🔗 [https://resumindai-ashy.vercel.app/](https://resumindai-ashy.vercel.app/)
 
 ---
 
@@ -20,7 +20,7 @@ An intelligent, fully responsive AI-powered resume analyzer that gives ATS score
 
 | Landing Page | Light Mode |
 |--------------|------------|
-| <img width="1918" height="908" alt="image" src="https://github.com/user-attachments/assets/bd7b248c-9675-4945-b0dc-f5e2eb5d7be6" /> | <img width="1918" height="906" alt="image" src="https://github.com/user-attachments/assets/92579aa4-bc3d-4d36-a5ff-edd7d2f613c6" /> |
+| <img width="1916" height="897" alt="image" src="https://github.com/user-attachments/assets/ff0cad88-a32b-4323-9e0c-3829c13c99db" /> | <img width="1918" height="905" alt="image" src="https://github.com/user-attachments/assets/3c0291c2-e250-4318-845c-611af434af53" /> |
 
 
 ## 📸 Screenshots
@@ -28,7 +28,7 @@ An intelligent, fully responsive AI-powered resume analyzer that gives ATS score
 
 | Dashboard Overview | Resume Upload | AI Suggestions | Analysis Report | History Page |
 |--------------------|---------------|----------------|-----------------|--------------|
-| <img src="https://github.com/user-attachments/assets/6c40d5ab-e622-4579-a4f5-99a5c9558dda" width="500"/> | <img src="https://github.com/user-attachments/assets/f39badd6-92b5-4d09-b599-3d4a0a019624" width="500"/> | <img src="https://github.com/user-attachments/assets/49cc9e21-c1f7-4978-a542-986af973dd5b" width="500"/> | <img src="https://github.com/user-attachments/assets/220a9879-4c3a-4c61-82c9-a5f361d81b83" width="500"/> | <img width="500" src="https://github.com/user-attachments/assets/bf23e322-d70f-4baf-92fc-8bb518e53856" /> |
+| <img width="1918" height="916" alt="image" src="https://github.com/user-attachments/assets/7ce543b0-4819-44bb-91b4-b77b5bb09261" /> | <img width="1918" height="906" alt="image" src="https://github.com/user-attachments/assets/932cb6fc-ac1c-4efa-a7c7-bfbe647d91c8" /> | <img width="1918" height="912" alt="image" src="https://github.com/user-attachments/assets/845075d2-7c9f-4771-9235-c93f7bf21083" />| <img width="1918" height="907" alt="image" src="https://github.com/user-attachments/assets/a1003c42-0c6f-4dbc-84f6-dc61543f12b5" /> | <img width="1918" height="916" alt="image" src="https://github.com/user-attachments/assets/1dc335dd-aba1-4e71-8b0d-623f30370709" /> |
 
 
 
@@ -45,7 +45,7 @@ An intelligent, fully responsive AI-powered resume analyzer that gives ATS score
 - 🔒 Auth with Email, Google, GitHub
 - 📥 Cloudinary-based secure PDF uploads
 - 📊 Job-resume matching (DeepSeek / Gemini)
-- 🌙 Light + Dark mode (shadcn/ui)
+- 🌙 Light + Dark mode
 
 ---
 
